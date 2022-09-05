@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "calculadora-en-react",
+    "calculadora": "calculadora-en-react"
+  },
+  "targets": {},
+  "etags": {}
+}
