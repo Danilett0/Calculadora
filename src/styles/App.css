@@ -1,0 +1,99 @@
+html,
+body {
+  align-items: center;
+  box-sizing: border-box;
+  background: rgb(241, 241, 241);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  user-select: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.react-calculator {
+  width: 100%;
+  max-width: 320px;
+  background-color: #292f36;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px rgb(87, 85, 85);
+  margin: auto;
+}
+
+.react-calculator button {
+  outline: none;
+  border: 0;
+  padding: 16px;
+  font-size: 20px;
+  line-height: 1;
+  background-color: transparent;
+  color: #ffce5c;
+  transition: all 300ms;
+}
+
+.react-calculator button:hover {
+  color: #00a3f5;
+  border: 1px solid #ffce5c22;
+  cursor: pointer;
+}
+
+.react-calculator .result {
+  width: 320px;
+  height: 80px;
+  padding: 8px;
+  overflow: hidden;
+  background-color: rgba(2, 14, 24, 0.411);
+  font-size: 32px;
+  line-height: 2;
+  color: #60d63c;
+  text-align: right;
+  direction: rtl;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.react-calculator .functions button,
+.math-operations button {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  color: #d63c6b;
+}
+
+.react-calculator .functions button:hover,
+.math-operations button:hover {
+  color: #b696a0;
+}
+
+.react-calculator .numbers {
+  width: 240px;
+  float: left;
+}
+
+.react-calculator .numbers button {
+  display: block;
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+
+.react-calculator .numbers button:last-child {
+  width: 100%;
+}
+
+.react-calculator .functions {
+  float: left;
+  width: 240px;
+}
+
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+ }
+ 
+ .fadein {
+  animation-name: fadein;
+  animation-duration: 4s;
+ }

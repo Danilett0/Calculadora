@@ -1,52 +1,50 @@
 /* eslint no-eval:0 */
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Result from "./components/Result";
 import MathOperations from "./components/MathOperations";
 import Functions from "./components/Functions";
 import Numbers from "./components/Numbers";
-import words from "lodash.words";
-import "./App.css";
+import Error from "./components/Error";
+import "./styles/App.css";
 
 const App = () => {
-  //instancio hook y asigno un estado inicial en vacio
-  const [texto, setTexto] = useState("");
-
-  // separamos los numeros por cada operaciom
-  const items = words(texto, /[^-^+^*^/]+/g);
-
-  // si la ultima posicion es mayor a 0 la pone en result si no deja 0
-  const valorResult = items.length > 0 ? items[items.length - 1] : 0;
+  const [texto, setTexto] = useState("0");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   return (
-    <div className="react-calculator">
-      {/* le asigno al componente un valor */}
-      <Result value={valorResult.toString()} />
-
+    <div className="react-calculator fadein">
+      <Error Type={null} Message={errorMessage} />;
+      <Result value={texto} />
       <Numbers
         onClickNumber={(numero) => {
-          setTexto(`${texto}${numero}`);
+          setTexto(`${texto === '0' ? "" : texto}${numero}`);
         }}
       />
-
       <Functions
-        onContentClear={(accion) => {
+        onContentClear={() => {
           setTexto("");
         }}
-        onDelete={(accion) => {
+        onDelete={() => {
           if (texto.length > 0) {
             const nuevoTexto = texto.substring(0, texto.length - 1);
             setTexto(`${nuevoTexto}`);
           }
         }}
       />
-
       <MathOperations
         onClickOperation={(operation) => {
-          setTexto(`${texto}${operation}`);
+          setTexto((texto) => `${texto}${operation}`);
         }}
-        onClickEqual={(equal) => {
-          setTexto(eval(texto).toString());
+        onClickEqual={() => {
+          if (texto.length) {
+            try {
+              const expression = texto.replace(/\b0+(?=\d)/g, "");
+              setTexto(eval(expression).toString());
+              setErrorMessage(null);
+            } catch {
+              setErrorMessage("Ops! parece que hay algo mal en tu operacion.");
+            }
+          }
         }}
       />
     </div>
